@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Login Page</title>
+
+    <!-- Our Custom CSS, COPIED AS INTERNAL BECAUSE OF LINKING BUGS-->
+    <!--<link th:href="@{/login_form.css}" type="text/css" href="login_form.css" rel="stylesheet" />-->
+
+    <style>
+        .body-bg {
+            font-family: 'lato', sans-serif;
+            background: linear-gradient(90deg, crimson, transparent),
+            linear-gradient(-90deg, #770322, transparent),
+            linear-gradient(-90deg, #770322, transparent),
+            linear-gradient(-90deg, #770322, transparent);
+            background-blend-mode: normal;
+            width: 1000px;
+            min-width: 1000px;
+        }
+
+        .half-div-bg {
+            position: fixed;
+            top: 0;
+            right: 50%;
+            width: 50%;
+            height: 100%;
+            background-color: pink;
+        }
+
+        .half-div-bg-2 {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            font-family: 'lato', sans-serif;
+            background: linear-gradient(90deg, crimson, transparent),
+            linear-gradient(-90deg, #770322, transparent),
+            linear-gradient(-90deg, #770322, transparent),
+            linear-gradient(-90deg, #770322, transparent);
+            background-blend-mode: normal;
+        }
+
+        .container {
+            border-radius: 20px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            width: 600px;
+            height: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            position: absolute;
+        }
+
+        input[type=text], input[type=password], input[type=submit], a {
+            background-color: white;
+            width: 100%;
+            padding: 12px 20px;
+            margin-left: auto;
+            margin-right: auto;
+            margin: 6px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        p, a, h1{
+            text-align: center;
+        }
+
+        .h1-left {
+            font-size: 100px;
+            color: crimson;
+            margin-left: 87%;
+        }
+
+        .h1-right {
+            font-size: 100px;
+            color: pink;
+            margin-right: 81%;
+        }
+
+        .big-2 {
+            font-size: 40px;
+        }
+
+        .btn-edit {
+            border-radius: 7px;
+            background-color: #facada;
+            bottom: 0px;
+            box-shadow: 0 5px 0 #bf0d49;
+            color: #bf0d49;
+            font-weight: bold;
+            padding: 1em 1.5em;
+            position: relative;
+            text-decoration: none;
+            transition: box-shadow 0.2s, bottom 0.2s, color 1s;
+        }
+
+        .btn-edit:hover {
+            background-color: #fff0f5;
+            color: #751046;
+            cursor: pointer;
+            bottom: 2px;
+            box-shadow: 0 7px 0 #751046;
+        }
+    </style>
+
+</head>
+<body class="body-bg">
+
+
+<div class="half-div-bg">
+    <h1 class="h1-left">Uni</h1>
+</div>
+<div class="half-div-bg-2">    <h1 class="h1-right">bank</h1></div>
+<div class="container">
+
+    <form th:action="@{/login}" method="post">
+        <p class="big-2">Welcome</p>
+
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">
+                Invalid username and password.
+            </div>
+        </div>
+        <div th:if="${param.logout}">
+            <div class="alert alert-info">
+                You have been logged out.
+            </div>
+        </div>
+
+        <input type="text" name="username" id="username"
+               placeholder="UserName" required autofocus/>
+        <input type="password" name="password" id="password"
+               placeholder="Password" required/>
+        <input type="submit" class="btn-edit" value="Sign In"/>
+
+        &copy; 2021 @SDP
+        <span sec:authorize="isAuthenticated()">
+                <a class="btn-edit" th:href="@{/logout}">Log Out</a>
+                | Logged user: <span sec:authentication="name"></span> |
+                Role: <span sec:authentication="principal.authorities"></span> |
+            </span>
+    </form>
+</div>
+</body>
+</html>

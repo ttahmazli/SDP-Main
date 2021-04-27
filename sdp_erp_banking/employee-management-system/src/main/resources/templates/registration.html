@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+
+    <link th:href="@{/css/bootstrap.min.css}" rel='stylesheet' type='text/css'/>
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" th:href="@{/css/login_form.css}" type="text/css"/>
+
+    <link rel="stylesheet" th:href="@{/css/font-awesome.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
+
+
+    <script th:src="@{/js/jquery-2.2.0.min.js}"></script>
+
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet'
+          type='text/css'/>
+
+
+    <!-- <link rel="stylesheet" th:href="@{/css/icon-font.min.css}" type='text/css' /> -->
+
+</head>
+<body class="body-bg">
+<div class="half-div-bg">
+    <h1 class="h1-left">Uni</h1>
+</div>
+<div class="half-div-bg-2"><h1 class="h1-right">bank</h1></div>
+<div class="container">
+
+    <p class="big-2">Registration</p>
+    <label class="alert alert-info" style="width: 100%;" th:if="${successMessage != null}"
+           th:text="${successMessage}"></label>
+    <form th:action="@{/registration}" th:object="${userInfo}" method="post">
+
+        <span class="username">First Name:</span>
+        <input type="text" th:field="*{firstName}" class="name" placeholder="First Name" required>
+        <label class="alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></label>
+
+        <span class="username">Last Name:</span>
+        <input type="text" th:field="*{lastName}" class="name" placeholder="Last Name" required>
+        <label class="alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></label>
+
+        <span class="username">Email:</span>
+        <input type="text" th:field="*{email}" class="name" placeholder="E-mail" required>
+        <label class="alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
+
+
+        <span class="username">Password:</span>
+        <input type="password" th:field="*{password}" class="password" required>
+        <label class="alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
+
+        <div class="username">
+            <span class="username">Role:</span>
+            <label style="padding-left: 25px;padding-right: 10px;">
+                <input type="radio" th:field="*{role}" value="MANAGER" checked="checked">Manager</label>
+            <label><input type="radio" th:field="*{role}" value="EMPLOYEE">Employee</label>
+            <label class="alert-danger" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></label>
+        </div>
+        <div class="login-w3">
+            <input type="submit" class="login" value="Sign Up">
+        </div>
+    </form>
+    <a th:href="@{/login}">Back To Login</a>
+</div>
+</body>
+</html>
