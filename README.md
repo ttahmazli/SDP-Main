@@ -8,15 +8,15 @@ Senior Design Project Main
 -Please see application.properties files inside resources for configuration
 
 -credentials for crm:
-    USERNAME				      PASSWORD		ROLE
+          USERNAME 					PASSWORD		ROLE
 	
 	  user					        password		USER
-	  togrul					      password		USER
+	  togrul					password		USER
 	  admin					        password		ADMIN
 	
 for ems:
 	
-	  shuseynova@email.com 	123456			MANAGER
+	  shuseynova@email.com 				123456			MANAGER
 	
 -credentials can be changed through config files
 
